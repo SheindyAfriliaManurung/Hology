@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tomato Monitor</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            🍅
+        </div>
+
+        <div class="brand-name">
+            tomato<span>monitor</span>
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+        <a href="#"
+           class="nav-item"
+           data-page="dashboard">
+
+            <span class="nav-icon">⌂</span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a href="#"
+           class="nav-item active"
+           data-page="monitoring">
+
+            <span class="nav-icon">▣</span>
+
+            <span>
+                Monitoring
+            </span>
+
+        </a>
+
+
+        <a href="#"
+           class="nav-item"
+           data-page="analysis">
+
+            <span class="nav-icon">⌁</span>
+
+            <span>
+                Analisis Kesehatan
+            </span>
+
+        </a>
+
+
+        <a href="#"
+           class="nav-item"
+           data-page="history">
+
+            <span class="nav-icon">◷</span>
+
+            <span>
+                History
+            </span>
+
+        </a>
+
+
+        <a href="#"
+           class="nav-item"
+           data-page="control">
+
+            <span class="nav-icon">☷</span>
+
+            <span>
+                Control Panel
+            </span>
+
+        </a>
+
+
+        <a href="#"
+           class="nav-item"
+           data-page="settings">
+
+            <span class="nav-icon">⚙</span>
+
+            <span>
+                Setting
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+
+    <div class="sidebar-bottom">
+
+        <div class="mqtt-sidebar-status">
+
+            <span id="sidebar-status-dot"
+                  class="status-dot disconnected">
+            </span>
+
+            <span id="sidebar-mqtt-status">
+                MQTT Disconnected
+            </span>
+
+        </div>
+
+
+        <button
+            class="logout-button"
+            id="logout-button">
+
+            <span>
+                ⇥
+            </span>
+
+            Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+<!-- =====================================================
+     MONITORING PAGE
+===================================================== -->
+
+<section
+    class="page-content active-page"
+    id="page-monitoring">
+
+
+    <!-- PAGE HEADER -->
+
+    <header class="page-header">
+
+        <div>
+
+            <div class="breadcrumb">
+                Smart Agriculture / Monitoring
+            </div>
+
+            <h1>
+                Plant Monitoring
+            </h1>
+
+            <p>
+                Pantau kondisi tanaman tomat secara real-time
+            </p>
+
+        </div>
+
+
+        <div class="header-status">
+
+            <div class="live-badge">
+
+                <span class="live-dot"></span>
+
+                <span id="header-live">
+                    LIVE
+                </span>
+
+            </div>
+
+
+            <div class="current-time">
+
+                ◷
+
+                <span id="current-time">
+                    --:--:--
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- SENSOR CARDS -->
+
+    <section class="sensor-grid">
+
+
+        <!-- TEMPERATURE -->
+
+        <div class="sensor-card">
+
+            <div class="sensor-card-header">
+
+                <span class="sensor-title">
+                    Suhu Tanaman
+                </span>
+
+                <span
+                    class="badge badge-normal"
+                    id="temperature-badge">
+
+                    NORMAL
+
+                </span>
+
+            </div>
+
+
+            <div class="sensor-content">
+
+                <div class="sensor-icon temperature-icon">
+                    🌡️
+                </div>
+
+
+                <div
+                    class="sensor-value"
+                    id="temperature">
+
+                    --
+
+                </div>
+
+
+                <div class="sensor-unit">
+                    °C
+                </div>
+
+
+                <div class="sensor-ideal">
+                    Ideal: 25°C - 32°C
+                </div>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill temperature-progress"
+                    id="temperature-progress">
+                </div>
+
+            </div>
+
+
+            <div class="sensor-footer">
+
+                <span>
+
+                    <span
+                        class="small-status-dot"
+                        id="temperature-dot">
+                    </span>
+
+                    <span id="temperature-status">
+                        Waiting for data...
+                    </span>
+
+                </span>
+
+
+                <span>
+                    ◷
+                    <span class="card-time">
+                        --:--:--
+                    </span>
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SOIL MOISTURE -->
+
+        <div class="sensor-card">
+
+            <div class="sensor-card-header">
+
+                <span class="sensor-title">
+                    Kelembapan Tanah
+                </span>
+
+                <span
+                    class="badge badge-optimal"
+                    id="soil-badge">
+
+                    OPTIMAL
+
+                </span>
+
+            </div>
+
+
+            <div class="sensor-content">
+
+                <div class="sensor-icon moisture-icon">
+                    💧
+                </div>
+
+
+                <div
+                    class="sensor-value"
+                    id="soil">
+
+                    --
+
+                </div>
+
+
+                <div class="sensor-unit">
+                    %
+                </div>
+
+
+                <div class="sensor-ideal">
+                    Ideal: 50% - 80%
+                </div>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill soil-progress"
+                    id="soil-progress">
+                </div>
+
+            </div>
+
+
+            <div class="sensor-footer">
+
+                <span>
+
+                    <span
+                        class="small-status-dot"
+                        id="soil-dot">
+                    </span>
+
+                    <span id="soil-status">
+                        Waiting for data...
+                    </span>
+
+                </span>
+
+
+                <span>
+                    ◷
+                    <span class="card-time">
+                        --:--:--
+                    </span>
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DISEASE -->
+
+        <div class="sensor-card">
+
+            <div class="sensor-card-header">
+
+                <span class="sensor-title">
+                    Disease Prediction
+                </span>
+
+                <span class="badge badge-ai">
+                    AI
+                </span>
+
+            </div>
+
+
+            <div class="sensor-content disease-content">
+
+                <div class="sensor-icon disease-icon">
+                    🔬
+                </div>
+
+
+                <div
+                    class="prediction-value"
+                    id="prediction">
+
+                    Waiting...
+
+                </div>
+
+
+                <div class="prediction-description">
+                    AI-based plant health analysis
+                </div>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill confidence-progress"
+                    id="confidence-progress">
+                </div>
+
+            </div>
+
+
+            <div class="sensor-footer">
+
+                <span>
+
+                    <span class="small-status-dot green">
+                    </span>
+
+                    <span id="confidence">
+                        Confidence: --
+                    </span>
+
+                </span>
+
+
+                <span>
+                    ◷
+                    <span class="card-time">
+                        --:--:--
+                    </span>
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PLANT HEALTH ANALYSIS
+    ================================================= -->
+
+    <section class="content-card health-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-label">
+                    ANALISIS KESEHATAN TANAMAN
+                </div>
+
+                <h2>
+                    Plant Health Analysis
+                </h2>
+
+            </div>
+
+
+            <div class="average-confidence">
+
+                <span>
+                    AVG CONFIDENCE
+                </span>
+
+                <strong id="average-confidence">
+                    --
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="health-content">
+
+
+            <div class="health-status">
+
+                <div class="health-plant-icon">
+                    🌱
+                </div>
+
+
+                <div>
+
+                    <div class="health-small-title">
+                        Current Status
+                    </div>
+
+                    <h3 id="plant-status">
+                        Waiting for sensor data
+                    </h3>
+
+                    <p id="plant-status-description">
+                        Sistem sedang menunggu data dari sensor tanaman.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="health-mini-grid">
+
+
+                <div class="health-mini-card">
+
+                    <span class="mini-icon">
+                        🌡️
+                    </span>
+
+                    <div>
+
+                        <span>
+                            Temperature
+                        </span>
+
+                        <strong id="health-temperature">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="health-mini-card">
+
+                    <span class="mini-icon">
+                        💧
+                    </span>
+
+                    <div>
+
+                        <span>
+                            Soil Moisture
+                        </span>
+
+                        <strong id="health-soil">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="health-mini-card">
+
+                    <span class="mini-icon">
+                        🔬
+                    </span>
+
+                    <div>
+
+                        <span>
+                            Disease
+                        </span>
+
+                        <strong id="health-disease">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MQTT LIVE DATA
+    ================================================= -->
+
+    <section class="content-card mqtt-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-label">
+                    MQTT CONNECTION
+                </div>
+
+                <h2>
+                    Live Data Feed
+                </h2>
+
+            </div>
+
+
+            <div class="mqtt-live">
+
+                <span class="live-dot"></span>
+
+                LIVE
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="mqtt-message-box"
+            id="mqtt-message">
+
+            Waiting for MQTT message...
+
+        </div>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     DASHBOARD PAGE
+===================================================== -->
+
+<section
+    class="page-content"
+    id="page-dashboard">
+
+
+    <header class="page-header">
+
+        <div>
+
+            <div class="breadcrumb">
+                Smart Agriculture / Dashboard
+            </div>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Ringkasan kondisi tanaman tomat
+            </p>
+
+        </div>
+
+
+        <div class="header-status">
+
+            <div class="live-badge">
+
+                <span class="live-dot"></span>
+
+                SYSTEM ONLINE
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="welcome-card">
+
+        <div>
+
+            <div class="section-label white-label">
+                TOMATO MONITOR
+            </div>
+
+            <h2>
+                Selamat datang di Tomato Monitor 🍅
+            </h2>
+
+            <p>
+                Pantau suhu, kelembapan tanah, dan kesehatan
+                tanaman secara real-time dalam satu sistem.
+            </p>
+
+        </div>
+
+
+        <div class="welcome-icon">
+            🌱
+        </div>
+
+    </section>
+
+
+
+    <section class="summary-grid">
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon temperature-bg">
+                🌡️
+            </div>
+
+            <div>
+
+                <span>
+                    Temperature
+                </span>
+
+                <strong id="dashboard-temperature">
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon moisture-bg">
+                💧
+            </div>
+
+            <div>
+
+                <span>
+                    Soil Moisture
+                </span>
+
+                <strong id="dashboard-soil">
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon disease-bg">
+                🔬
+            </div>
+
+            <div>
+
+                <span>
+                    Disease Prediction
+                </span>
+
+                <strong id="dashboard-prediction">
+                    Waiting...
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon confidence-bg">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    AI Confidence
+                </span>
+
+                <strong id="dashboard-confidence">
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="content-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-label">
+                    SYSTEM STATUS
+                </div>
+
+                <h2>
+                    Status Sistem
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-status-grid">
+
+
+            <div class="system-item">
+
+                <div class="status-check">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        MQTT Connection
+                    </strong>
+
+                    <small id="dashboard-mqtt">
+                        Disconnected
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="system-item">
+
+                <div class="status-check">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Temperature Sensor
+                    </strong>
+
+                    <small id="dashboard-temp-status">
+                        Waiting
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="system-item">
+
+                <div class="status-check">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Soil Moisture Sensor
+                    </strong>
+
+                    <small id="dashboard-soil-status">
+                        Waiting
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="system-item">
+
+                <div class="status-check">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        AI Prediction
+                    </strong>
+
+                    <small id="dashboard-ai-status">
+                        Waiting
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     ANALYSIS PAGE
+===================================================== -->
+
+<section
+    class="page-content"
+    id="page-analysis">
+
+
+    <header class="page-header">
+
+        <div>
+
+            <div class="breadcrumb">
+                Smart Agriculture / Analisis Kesehatan
+            </div>
+
+            <h1>
+                Analisis Kesehatan
+            </h1>
+
+            <p>
+                Analisis kondisi tanaman menggunakan AI
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="analysis-main-card">
+
+        <div class="analysis-big-icon">
+            🔬
+        </div>
+
+
+        <div class="analysis-result">
+
+            <div class="section-label">
+                AI DISEASE DETECTION
+            </div>
+
+            <h2 id="analysis-prediction">
+                Waiting for prediction...
+            </h2>
+
+            <p>
+                Sistem AI menganalisis kondisi tanaman
+                berdasarkan data yang diterima.
+            </p>
+
+
+            <div class="confidence-box">
+
+                <span>
+                    Prediction Confidence
+                </span>
+
+                <strong id="analysis-confidence">
+                    --
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="analysis-grid">
+
+
+        <div class="analysis-info-card">
+
+            <div class="analysis-info-icon">
+                🌡️
+            </div>
+
+            <div>
+
+                <span>
+                    Temperature
+                </span>
+
+                <strong id="analysis-temperature">
+                    --
+                </strong>
+
+                <small>
+                    Ideal: 25°C - 32°C
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-info-card">
+
+            <div class="analysis-info-icon">
+                💧
+            </div>
+
+            <div>
+
+                <span>
+                    Soil Moisture
+                </span>
+
+                <strong id="analysis-soil">
+                    --
+                </strong>
+
+                <small>
+                    Ideal: 50% - 80%
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="content-card">
+
+        <div class="section-label">
+            RECOMMENDATION
+        </div>
+
+        <h2>
+            Rekomendasi Perawatan
+        </h2>
+
+
+        <div
+            class="recommendation-box"
+            id="recommendation">
+
+            Menunggu data sensor untuk memberikan
+            rekomendasi perawatan tanaman.
+
+        </div>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     HISTORY PAGE
+===================================================== -->
+
+<section
+    class="page-content"
+    id="page-history">
+
+
+    <header class="page-header">
+
+        <div>
+
+            <div class="breadcrumb">
+                Smart Agriculture / History
+            </div>
+
+            <h1>
+                History
+            </h1>
+
+            <p>
+                Riwayat data monitoring tanaman
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="content-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-label">
+                    SENSOR HISTORY
+                </div>
+
+                <h2>
+                    Riwayat Monitoring
+                </h2>
+
+            </div>
+
+
+            <button
+                class="danger-button"
+                id="clear-history">
+
+                Clear History
+
+            </button>
+
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Waktu
+                        </th>
+
+                        <th>
+                            Temperature
+                        </th>
+
+                        <th>
+                            Soil Moisture
+                        </th>
+
+                        <th>
+                            Disease
+                        </th>
+
+                        <th>
+                            Confidence
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="history-table">
+
+                    <tr>
+
+                        <td colspan="5"
+                            class="empty-table">
+
+                            Belum ada data monitoring.
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTROL PANEL PAGE
+===================================================== -->
+
+<section
+    class="page-content"
+    id="page-control">
+
+
+    <header class="page-header">
+
+        <div>
+
+            <div class="breadcrumb">
+                Smart Agriculture / Control Panel
+            </div>
+
+            <h1>
+                Control Panel
+            </h1>
+
+            <p>
+                Kontrol sistem monitoring tanaman
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="control-grid">
+
+
+        <div class="control-card">
+
+            <div class="control-icon">
+                💧
+            </div>
+
+            <div class="control-info">
+
+                <h3>
+                    Automatic Irrigation
+                </h3>
+
+                <p>
+                    Aktifkan sistem penyiraman otomatis
+                    berdasarkan kelembapan tanah.
+                </p>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="irrigation-switch">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+
+        <div class="control-card">
+
+            <div class="control-icon">
+                🔔
+            </div>
+
+            <div class="control-info">
+
+                <h3>
+                    Alert Notification
+                </h3>
+
+                <p>
+                    Aktifkan peringatan ketika kondisi
+                    tanaman tidak normal.
+                </p>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="alert-switch"
+                    checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+
+        <div class="control-card">
+
+            <div class="control-icon">
+                🔬
+            </div>
+
+            <div class="control-info">
+
+                <h3>
+                    AI Disease Detection
+                </h3>
+
+                <p>
+                    Aktifkan analisis otomatis kesehatan
+                    tanaman menggunakan AI.
+                </p>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="ai-switch"
+                    checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="content-card">
+
+        <div class="section-label">
+            SENSOR THRESHOLD
+        </div>
+
+        <h2>
+            Batas Kondisi Tanaman
+        </h2>
+
+
+        <div class="threshold-grid">
+
+
+            <div class="input-group">
+
+                <label>
+                    Minimum Soil Moisture (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="min-moisture"
+                    value="50"
+                    min="0"
+                    max="100">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Maximum Temperature (°C)
+                </label>
+
+                <input
+                    type="number"
+                    id="max-temperature"
+                    value="32"
+                    min="0"
+                    max="100">
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            id="save-control">
+
+            Simpan Pengaturan
+
+        </button>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     SETTINGS PAGE
+===================================================== -->
+
+<section
+    class="page-content"
+    id="page-settings">
+
+
+    <header class="page-header">
+
+        <div>
+
+            <div class="breadcrumb">
+                Smart Agriculture / Setting
+            </div>
+
+            <h1>
+                Setting
+            </h1>
+
+            <p>
+                Pengaturan aplikasi Tomato Monitor
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="content-card settings-card">
+
+        <div class="section-label">
+            APPLICATION SETTINGS
+        </div>
+
+        <h2>
+            Pengaturan Aplikasi
+        </h2>
+
+
+
+        <div class="setting-row">
+
+            <div>
+
+                <strong>
+                    Auto Refresh
+                </strong>
+
+                <p>
+                    Perbarui tampilan data secara otomatis.
+                </p>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="auto-refresh"
+                    checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+
+        <div class="setting-row">
+
+            <div>
+
+                <strong>
+                    Real-time Monitoring
+                </strong>
+
+                <p>
+                    Tampilkan data sensor secara langsung.
+                </p>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="realtime-monitoring"
+                    checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+
+        <div class="setting-row">
+
+            <div>
+
+                <strong>
+                    Sound Notification
+                </strong>
+
+                <p>
+                    Aktifkan notifikasi suara sistem.
+                </p>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="sound-notification">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="about-card">
+
+        <div class="about-icon">
+            🍅
+        </div>
+
+        <div>
+
+            <h3>
+                Tomato Monitor
+            </h3>
+
+            <p>
+                Smart Tomato Plant Monitoring System
+            </p>
+
+            <small>
+                Version 1.0
+            </small>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <span>
+        🍅 Tomato Monitor
+    </span>
+
+    <span>
+        Smart Tomato Plant Monitoring System
+    </span>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     LOGOUT MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="logout-modal">
+
+    <div class="modal">
+
+        <div class="modal-icon">
+            ⇥
+        </div>
+
+        <h2>
+            Logout
+        </h2>
+
+        <p>
+            Apakah kamu yakin ingin keluar dari
+            Tomato Monitor?
+        </p>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-button"
+                id="cancel-logout">
+
+                Batal
+
+            </button>
+
+
+            <button
+                class="confirm-logout"
+                id="confirm-logout">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- MQTT LIBRARY -->
+
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+
+<!-- APPLICATION JAVASCRIPT -->
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>
